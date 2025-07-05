@@ -7,6 +7,7 @@ import About from "./pages/About";
 import Dashboard from "./pages/Dashboard";
 import NewsArticles from "./pages/NewsArticles";
 import Header from "./components/shared/Header";
+import { Toaster } from "./components/ui/toaster";
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/news" element={<NewsArticles />} />
       </Routes>
+      <Toaster />
     </BrowserRouter>
   );
 };
