@@ -1,9 +1,127 @@
-import React from 'react'
+import React from "react";
+import { Link } from "react-router-dom";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { Button } from "@/components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 
+const formSchema = z.object({
+  username: z
+    .string()
+    .min(2, { message: "Username must be atleast 2 characters" }),
+  email: z.string().min({ message: "Invalid email address." }),
+  password: z
+    .string()
+    .min(8, { message: "Password must be atleast 8 characters." }),
+});
 const SignUnForm = () => {
+  const form = useForm({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      username: "",
+      email: "",
+      password: "",
+    },
+  });
+  function onSubmit(values) {
+    console.log(values);
+  }
   return (
-    <div>SignUnForm</div>
-  )
-}
+    <div className="min-h-screen mt-20">
+      <div className="flex p-3 max-w-3xl sm:max-w-5xl mx-auto flex-col md:flex-row md:items-center gap-5">
+        {/* left */}
+        <div className="w-full md:w-1/2 flex flex-col justify-center items-center min-h-[300px] md:min-h-[500px]">
+          <Link to={"/"}>
+            <img
+              src="/logo.svg"
+              alt="समय Bihar Logo"
+              className="h-10 sm:h-14 w-auto object-contain p-1"
+            />
+          </Link>
+          <h2 className="text-[24px] md:text-[30px] font-bold leading-[1%] tracking-tighter pt-5 sm:pt-12 text-center">
+            Create a new Account
+          </h2>
+          <p className="text-slate-500 text-[14px] font-medium leading-[140%] md:text-[16px] md:font-normal mt-6 underline">
+            Welcome to समय Bihar, Please provide your details
+          </p>
+        </div>
 
-export default SignUnForm
+        {/* right */}
+        <div className="w-full md:w-1/2 flex-1">
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+              <FormField
+                control={form.control}
+                name="username"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Username</FormLabel>
+                    <FormControl>
+                      <Input type="text" placeholder="Username" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="email"
+                        placeholder="xyz@gmail.com"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Password</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="password"
+                        placeholder="Password"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Button type="submit" className="bg-[#080052] w-full">
+                Submit
+              </Button>
+            </form>
+          </Form>
+          <div className="flex gap-2 text-sm mt-5">
+            <span>Have an account ?</span>
+            <Link to="/sign-in" className="text-blue-500">
+              Sign in
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default SignUnForm;
