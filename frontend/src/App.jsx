@@ -1,14 +1,24 @@
 import React from "react";
-import { Button } from "./components/ui/button";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import SignInForm from "./auth/forms/SignInForm";
+import SignUnForm from "./auth/forms/SignUnForm";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Dashboard from "./pages/Dashboard";
+import NewsArticles from "./pages/NewsArticles";
 
 const App = () => {
   return (
-    <div>
-      <h1 className="text-3xl font-bold underline text-red-500">समय Bihar !</h1>
-      <Button className="bg-red-800" variant="ghost">
-        Click me
-      </Button>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/sign-in" element={<SignInForm />} />
+        <Route path="/sign-up" element={<SignUnForm />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/news" element={<NewsArticles />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 
