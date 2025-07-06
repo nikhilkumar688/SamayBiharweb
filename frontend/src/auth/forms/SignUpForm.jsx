@@ -25,7 +25,7 @@ const formSchema = z.object({
     .min(8, { message: "Password must be at least 8 characters." }),
 });
 
-const SignUnForm = () => {
+const SignUpForm = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -158,12 +158,10 @@ const SignUnForm = () => {
               Sign in
             </Link>
           </div>
-
           {errorMessage && <p className="mt-4 text-red-500">{errorMessage}</p>}
         </div>
       </div>
     </div>
   );
 };
-
-export default SignUnForm;
+export default SignUpForm;

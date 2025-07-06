@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import SignInForm from "./auth/forms/SignInForm";
-import SignUnForm from "./auth/forms/SignUnForm";
+import SignUpForm from "./auth/forms/SignUpForm";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Dashboard from "./pages/Dashboard";
@@ -16,7 +16,7 @@ const App = () => {
       <Header />
       <Routes>
         <Route path="/sign-in" element={<SignInForm />} />
-        <Route path="/sign-up" element={<SignUnForm />} />
+        <Route path="/sign-up" element={<SignUpForm />} />
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/dashboard" element={<Dashboard />} />
